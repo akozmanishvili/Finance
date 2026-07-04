@@ -9,6 +9,7 @@ import Login from "./pages/Login.jsx";
 import Categories from "./pages/Categories.jsx";
 import Stats from "./pages/Stats.jsx";
 import AuthContext from "./context/AuthContext.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,10 +21,15 @@ const router = createBrowserRouter([
     ),
     errorElement: <Error></Error>,
     children: [
-      { index: true, element: <Home></Home> },
       { path: "/login", element: <Login></Login> },
-      { path: "/categories", element: <Categories></Categories> },
-      { path: "/stats", element: <Stats></Stats> },
+      {
+        element: <ProtectedRoute></ProtectedRoute>,
+        children: [
+          { index: true, element: <Home></Home> },
+          { path: "/categories", element: <Categories></Categories> },
+          { path: "/stats", element: <Stats></Stats> },
+        ],
+      },
     ],
   },
 ]);
