@@ -9,6 +9,7 @@ import Login from "./pages/Login.jsx";
 import Categories from "./pages/Categories.jsx";
 import Stats from "./pages/Stats.jsx";
 import AuthContext from "./context/AuthContext.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
