@@ -8,11 +8,15 @@ import Home from "./pages/Home.jsx";
 import Login from "./pages/Login.jsx";
 import Categories from "./pages/Categories.jsx";
 import Stats from "./pages/Stats.jsx";
-
+import AuthContext from "./context/AuthContext.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App></App>,
+    element: (
+      <AuthContext>
+        <App></App>
+      </AuthContext>
+    ),
     errorElement: <Error></Error>,
     children: [
       { index: true, element: <Home></Home> },
