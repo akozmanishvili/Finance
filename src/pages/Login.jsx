@@ -1,5 +1,39 @@
+import { useState } from "react";
+import useAuth from "../hooks/useAuth";
+import { Navigate } from "react-router-dom";
 const Login = () => {
-  return <div>Login</div>;
+  const [name, setName] = useState(``);
+  const [password, setPassword] = useState(``);
+  const { loggedIn, login } = useAuth();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (name === "admin" && password === "1234") login();
+  };
+
+  if (loggedIn) {
+    return <Navigate to="/"></Navigate>;
+  }
+
+  return (
+    <form>
+      <input
+        type="text"
+        placeholder="Name..."
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      ></input>
+      <input
+        type="password"
+        placeholder="Password..."
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      ></input>
+      <button type="submit" onClick={handleSubmit}>
+        Submit
+      </button>
+    </form>
+  );
 };
 
 export default Login;
