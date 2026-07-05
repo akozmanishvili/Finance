@@ -10,14 +10,16 @@ import Categories from "./pages/Categories.jsx";
 import Stats from "./pages/Stats.jsx";
 import AuthContext from "./context/AuthContext.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
-
+import DataContext from "./context/DataContext.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <AuthContext>
-        <App></App>
-      </AuthContext>
+      <DataContext>
+        <AuthContext>
+          <App></App>
+        </AuthContext>
+      </DataContext>
     ),
     errorElement: <Error></Error>,
     children: [
