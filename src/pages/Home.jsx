@@ -26,18 +26,32 @@ const Home = () => {
     setType(``);
   };
 
+  const calculateSum = () => {
+    let total = transactions.reduce((sum, transaction) => {
+      if (transaction.type === "Expense") {
+        sum = sum - Number(transaction.cost);
+      } else if (transaction.type === "Income") {
+        sum = sum + Number(transaction.cost);
+      }
+      return sum;
+    }, 0);
+
+    return total;
+  };
+
+  const total = calculateSum();
+
   return (
     <div>
       <div>
-        <ul>
-          {transactions.map((transaction) => {
-            const sum = 0;
-            if (transaction.type === "Expense") sum = sum - transaction.cost;
-            else if (transaction.type === "Income") sum += transaction.cost;
-            return sum;
-          })}
-        </ul>
-        <h2> Sum of all transactions: {sum}</h2>
+        <h2
+          style={{
+            color: total < 0 ? "red" : "green",
+          }}
+        >
+          {" "}
+          Sum of all transactions: {total} $
+        </h2>
       </div>
       <form onSubmit={handleSubmit}>
         <input
@@ -74,7 +88,12 @@ const Home = () => {
         <ul>
           {transactions.map((transaction) => {
             return (
-              <li key={transaction.id}>
+              <li
+                key={transaction.id}
+                style={{
+                  color: transaction.type === "Expense" ? "red" : "green",
+                }}
+              >
                 <h3>{transaction.name}</h3>
                 <h4>{transaction.category}</h4>
                 <h4>{transaction.cost}$</h4>
