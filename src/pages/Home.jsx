@@ -66,19 +66,32 @@ const Home = () => {
           value={cost}
           onChange={(e) => setCost(e.target.value)}
         ></input>
-        <input
-          type="text"
-          placeholder="Category of the transaction"
+        <label htmlFor="transaction-category">
+          Choose Transaction Category:
+        </label>
+        <select
+          id="transaction-category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
-        ></input>
+        >
+          <option value="Empty">Choose Category</option>
+          <ul>
+            {categories.map((category) => {
+              return (
+                <li key={category.id}>
+                  <option value={category.name}>{category.name}</option>
+                </li>
+              );
+            })}
+          </ul>
+        </select>
         <label htmlFor="transaction-type">Choose Transaction Type:</label>
         <select
           id="transaction-type"
           value={type}
           onChange={(e) => setType(e.target.value)}
         >
-          <option value="Empty"></option>
+          <option value="Empty">Choose Type</option>
           <option value="Expense">Expense</option>
           <option value="Income">Income</option>
         </select>
