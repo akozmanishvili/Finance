@@ -1,6 +1,6 @@
 import useData from "../hooks/useData";
 import { useState } from "react";
-
+import TransactionList from "../components/TransactionList";
 const Home = () => {
   const {
     transactions,
@@ -96,31 +96,7 @@ const Home = () => {
         </select>
         <button type="submit">Add Transaction</button>
       </form>
-      <div>
-        <ul>
-          {transactions.map((transaction) => {
-            return (
-              <li
-                key={transaction.id}
-                style={{
-                  color: transaction.type === "Expense" ? "red" : "green",
-                }}
-              >
-                <h3>{transaction.name}</h3>
-                <h4>{transaction.category}</h4>
-                <h4>{transaction.cost}$</h4>
-                <h4>{transaction.type}</h4>
-                <button
-                  type="button"
-                  onClick={() => deleteTransaction(transaction.id)}
-                >
-                  Delete
-                </button>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <TransactionList></TransactionList>
     </div>
   );
 };
