@@ -13,13 +13,29 @@ const CategoriesList = () => {
             <h3>{categoryParam.name}</h3>
             {filteredTransactions.map((filteredTransaction) => {
               return (
-                <div key={filteredTransaction.id}>
-                  <h4>
+                <div
+                  key={filteredTransaction.id}
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    padding: "6px 0",
+                    borderTop: "1px solid var(--border)",
+                  }}
+                >
+                  <span>{filteredTransaction.name}: </span>
+                  <span
+                    style={{
+                      color:
+                        filteredTransaction.type === "Expense"
+                          ? "var(--red)"
+                          : "var(--green)",
+                    }}
+                  >
                     {filteredTransaction.type === "Expense"
                       ? -filteredTransaction.cost
                       : filteredTransaction.cost}
                     $
-                  </h4>
+                  </span>
                 </div>
               );
             })}
