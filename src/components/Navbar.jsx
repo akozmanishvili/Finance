@@ -9,7 +9,7 @@ const Navbar = () => {
     return navigate("/login");
   };
   return (
-    <div>
+    <nav>
       <Link to={"/"}>Home Page</Link>
       {loggedIn || <Link to={"/login"}>Login</Link>}
       <Link to={"/categories"}>Categories</Link>
@@ -17,7 +17,7 @@ const Navbar = () => {
       <button type="button" onClick={handleSubmit}>
         Log out
       </button>
-    </div>
+    </nav>
   );
 };
 

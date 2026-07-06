@@ -16,6 +16,7 @@ const Categories = () => {
 
   return (
     <div>
+      <h1>Manage Categories</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -26,6 +27,7 @@ const Categories = () => {
         <button type="submit">Add</button>
       </form>
       <div>
+        <h3> Categories </h3>
         <ul>
           {categories.map((category) => {
             return (
@@ -42,7 +44,10 @@ const Categories = () => {
           })}
         </ul>
       </div>
-      <CategoriesList />
+      <div style={{ marginTop: "32px" }}>
+        <h1>Transactions by Category</h1>
+        <CategoriesList />
+      </div>
     </div>
   );
 };
