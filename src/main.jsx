@@ -4,10 +4,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import App from "./App.jsx";
 import Error from "./pages/Error.jsx";
-import Home from "./pages/Home.jsx";
-import Login from "./pages/Login.jsx";
-import Categories from "./pages/Categories.jsx";
-import Stats from "./pages/Stats.jsx";
 import AuthContext from "./context/AuthContext.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import DataContext from "./context/DataContext.jsx";
@@ -24,13 +20,37 @@ const router = createBrowserRouter([
     ),
     errorElement: <Error></Error>,
     children: [
-      { path: "/login", element: <Login></Login> },
+      {
+        path: "/login",
+        lazy: () =>
+          import("./pages/Login.jsx").then((module) => ({
+            element: <module.default />,
+          })),
+      },
       {
         element: <ProtectedRoute></ProtectedRoute>,
         children: [
-          { index: true, element: <Home></Home> },
-          { path: "/categories", element: <Categories></Categories> },
-          { path: "/stats", element: <Stats></Stats> },
+          {
+            index: true,
+            lazy: () =>
+              import("./pages/Home.jsx").then((module) => ({
+                element: <module.default />,
+              })),
+          },
+          {
+            path: "/categories",
+            lazy: () =>
+              import("./pages/Categories.jsx").then((module) => ({
+                element: <module.default />,
+              })),
+          },
+          {
+            path: "/stats",
+            lazy: () =>
+              import("./pages/Stats.jsx").then((module) => ({
+                element: <module.default />,
+              })),
+          },
         ],
       },
     ],
