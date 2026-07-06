@@ -75,15 +75,14 @@ const Home = () => {
           onChange={(e) => setCategory(e.target.value)}
         >
           <option value="Empty">Choose Category</option>
-          <ul>
-            {categories.map((category) => {
-              return (
-                <li key={category.id}>
-                  <option value={category.name}>{category.name}</option>
-                </li>
-              );
-            })}
-          </ul>
+
+          {categories.map((category) => {
+            return (
+              <option value={category.name} key={category.id}>
+                {category.name}
+              </option>
+            );
+          })}
         </select>
         <label htmlFor="transaction-type">Choose Transaction Type:</label>
         <select
