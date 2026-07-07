@@ -1,18 +1,39 @@
-# React + Vite
+# Finance Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+personal budget app built with React. User can add income and expense transactions, organize them by category, and get a statistic about his/her finances (this is all stored locally)
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Authentication — login/logout with protected routes
+- Transaction Management — add and delete income or expense transactions
+- Categories — create custom categories and view transactions grouped by category
+- Live Balance — running total net that updates instantly, colored green or red depending on surplus or deficit
+- Stats Page — total income, total spending, net balance, savings rate, and category breakdowns
+- Persistent Storage — all data survives page refresh (localStorage)
 
-## React Compiler
+## What I used
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- React 18
+- React Router v6 (with lazy loading, protected routes)
+- Context API + custom hooks for states
+- Vite
+- CSS
 
-Note: This will impact Vite dev & build performances.
+## To Run
 
-## Expanding the Oxlint configuration
+open `http://localhost:5173` in your browser.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+To Login: - Username: `admin` - Password: `1234`
+
+## Structure
+
+In src:
+pages/ # Login, Home, Categories, Stats, Error
+components/ # Navbar, TransactionForm, TransactionList, CategoriesList, StatsInfo, ProtectedRoute
+context/ # AuthContext, DataContext
+hooks/ # useAuth, useData
+
+## In Future
+
+- Deploy to AWS S3 + CloudFront
+- Add date field to transactions and filter by time period
