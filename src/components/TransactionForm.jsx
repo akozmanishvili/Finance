@@ -10,7 +10,8 @@ const TransactionForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const id = Date.now();
-    addTransaction({ name, cost, category, type, id });
+    if (name !== "" && type !== "" && category !== "" && cost !== "")
+      addTransaction({ name, cost, category, type, id });
     setName(``);
     setCost(``);
     setCategory(``);
