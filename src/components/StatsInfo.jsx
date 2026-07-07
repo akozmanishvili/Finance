@@ -32,11 +32,31 @@ const StatsInfo = () => {
 
   return (
     <div>
-      <h2>Total Spending: {totalSpending}</h2>
-      <h2>Total Income: {totalIncome}</h2>
-      <h3>Net Balance: {netBalance}</h3>
-      <h3>Savings rate: {savingsRate}</h3>
-      <div>
+      <div className="stats-grid">
+        <div className="stat-card">
+          <span>Total Spending</span>
+          <h2 style={{ color: "var(--red)" }}>{totalSpending}$</h2>
+        </div>
+        <div className="stat-card">
+          <span>Total Income</span>
+          <h2 style={{ color: "var(--green)" }}>{totalIncome}$</h2>
+        </div>
+        <div className="stat-card">
+          <span>Net Balance</span>
+          <h2 style={{ color: netBalance < 0 ? "var(--red)" : "var(--green)" }}>
+            {netBalance}$
+          </h2>
+        </div>
+        <div className="stat-card">
+          <span>Savings Rate</span>
+          <h3 style={{ color: netBalance < 0 ? "var(--red)" : "var(--green)" }}>
+            {savingsRate}
+          </h3>
+        </div>
+      </div>
+
+      <div className="breakdown-section">
+        <h1>Expense Breakdown by Category</h1>
         {categories.map((categoryParam) => {
           const eachCategoryExpenses = transactions.filter(
             (transaction) =>
@@ -44,38 +64,39 @@ const StatsInfo = () => {
               transaction.type === "Expense",
           );
           const eachCategorySpending = eachCategoryExpenses.reduce((sum, n) => {
-            sum = sum + Number(n.cost);
-            return sum;
+            return sum + Number(n.cost);
           }, 0);
-          if (eachCategorySpending === 0) return;
-
+          if (eachCategorySpending === 0) return null;
           return (
-            <h3 key={categoryParam.id}>
-              {categoryParam.name} spent{" "}
-              {(Number(eachCategorySpending) * 100) / totalSpending}% of total
-              expenses
-            </h3>
+            <div className="breakdown-row" key={categoryParam.id}>
+              <span>{categoryParam.name}</span>
+              <span>
+                {((eachCategorySpending * 100) / totalSpending).toFixed(1)}%
+              </span>
+            </div>
           );
         })}
       </div>
-      <div>
+
+      <div className="breakdown-section">
+        <h1>Income Breakdown by Category</h1>
         {categories.map((categoryParam) => {
           const eachCategoryIncomes = transactions.filter(
             (transaction) =>
               transaction.category === categoryParam.name &&
               transaction.type === "Income",
           );
-          const eachCategorySpending = eachCategoryIncomes.reduce((sum, n) => {
-            sum = sum + Number(n.cost);
-            return sum;
+          const eachCategoryIncome = eachCategoryIncomes.reduce((sum, n) => {
+            return sum + Number(n.cost);
           }, 0);
-          if (eachCategorySpending === 0) return;
+          if (eachCategoryIncome === 0) return null;
           return (
-            <h3 key={categoryParam.id}>
-              {categoryParam.name} is{" "}
-              {(Number(eachCategorySpending) * 100) / totalIncome}% of total
-              incomes
-            </h3>
+            <div className="breakdown-row" key={categoryParam.id}>
+              <span>{categoryParam.name}</span>
+              <span>
+                {((eachCategoryIncome * 100) / totalIncome).toFixed(1)}%
+              </span>
+            </div>
           );
         })}
       </div>
