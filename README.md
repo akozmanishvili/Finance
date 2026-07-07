@@ -19,6 +19,11 @@ personal budget app built with React. User can add income and expense transactio
 - Vite
 - CSS
 
+## Deployed
+
+- Deployed on AWS S3 + CloudFront
+- Live url: https://d37xuz1jl1arcq.cloudfront.net/stats
+
 ## To Run
 
 open `http://localhost:5173` in your browser.
