@@ -1,12 +1,12 @@
 import useData from "../hooks/useData";
 import { useState } from "react";
 import CategoriesList from "../components/CategoriesList";
-
+import { type Category } from "../types";
 const Categories = () => {
   const [name, setName] = useState(``);
   const { categories, transactions, addCategory, deleteCategory } = useData();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     const id = Date.now();
     addCategory({ name, id });
@@ -29,7 +29,7 @@ const Categories = () => {
       <div>
         <h3> Categories </h3>
         <ul>
-          {categories.map((category) => {
+          {categories.map((category: Category) => {
             return (
               <li key={category.id}>
                 <h3>{category.name}</h3>
