@@ -6,7 +6,7 @@ const Login = () => {
   const [password, setPassword] = useState(``);
   const { loggedIn, login } = useAuth();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     if (name === "admin" && password === "1234") login();
   };
