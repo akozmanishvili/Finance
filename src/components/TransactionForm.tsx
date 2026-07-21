@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useData from "../hooks/useData";
+import { Category } from "../types";
 const TransactionForm = () => {
   const [name, setName] = useState(``);
   const [cost, setCost] = useState(``);
@@ -7,7 +8,7 @@ const TransactionForm = () => {
   const [type, setType] = useState(``);
 
   const { categories, addTransaction } = useData();
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const id = Date.now();
     if (name !== "" && type !== "" && category !== "" && cost !== "")
@@ -43,7 +44,7 @@ const TransactionForm = () => {
         >
           <option value="Empty">Choose Category</option>
 
-          {categories.map((category) => {
+          {categories.map((category: Category) => {
             return (
               <option value={category.name} key={category.id}>
                 {category.name}
