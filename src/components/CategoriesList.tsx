@@ -1,17 +1,19 @@
 import useData from "../hooks/useData";
+import { Transaction, Category } from "../types";
 const CategoriesList = () => {
   const { categories, transactions, addCategory, deleteCategory } = useData();
   return (
     <div className="category-group">
-      {categories.map((categoryParam) => {
+      {categories.map((categoryParam: Category) => {
         const filteredTransactions = transactions.filter(
-          (transaction) => transaction.category === categoryParam.name,
+          (transaction: Transaction) =>
+            transaction.category === categoryParam.name,
         );
         if (filteredTransactions.length <= 0) return;
         return (
           <li key={categoryParam.id}>
             <h3>{categoryParam.name}</h3>
-            {filteredTransactions.map((filteredTransaction) => {
+            {filteredTransactions.map((filteredTransaction: Transaction) => {
               return (
                 <div
                   key={filteredTransaction.id}
