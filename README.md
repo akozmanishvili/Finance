@@ -1,6 +1,6 @@
 # Finance Tracker
 
-personal budget app built with React. User can add income and expense transactions, organize them by category, and get a statistic about his/her finances (this is all stored locally)
+personal budget app built with React + Typescript. User can add income and expense transactions, organize them by category, and get a statistic about his/her finances (this is all stored locally)
 
 ## Features
 
@@ -14,6 +14,7 @@ personal budget app built with React. User can add income and expense transactio
 ## What I used
 
 - React 18
+- Typescript
 - React Router v6 (with lazy loading, protected routes)
 - Context API + custom hooks for states
 - Vite
@@ -40,5 +41,4 @@ hooks/ # useAuth, useData
 
 ## In Future
 
-- Deploy to AWS S3 + CloudFront
 - Add date field to transactions and filter by time period
