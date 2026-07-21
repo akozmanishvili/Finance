@@ -1,5 +1,5 @@
 import useData from "../hooks/useData";
-import { Transaction, Category } from "../types";
+import { type Transaction, type Category } from "../types";
 const CategoriesList = () => {
   const { categories, transactions, addCategory, deleteCategory } = useData();
   return (

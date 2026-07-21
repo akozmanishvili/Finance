@@ -1,5 +1,5 @@
 import React, { createContext } from "react";
-import { Transaction, Category } from "../types";
+import { type Transaction, type Category } from "../types";
 import { useState } from "react";
 
 type DataContextType = {

@@ -18,6 +18,7 @@ const router = createBrowserRouter([
         </AuthContext>
       </DataContext>
     ),
+    HydrateFallback: () => <div>Loading...</div>,
     errorElement: <Error></Error>,
     children: [
       {

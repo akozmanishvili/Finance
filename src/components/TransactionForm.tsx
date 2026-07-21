@@ -1,6 +1,6 @@
 import { useState } from "react";
 import useData from "../hooks/useData";
-import { Category } from "../types";
+import { type Category } from "../types";
 const TransactionForm = () => {
   const [name, setName] = useState(``);
   const [cost, setCost] = useState(0);
