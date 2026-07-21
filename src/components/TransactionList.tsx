@@ -1,10 +1,11 @@
 import useData from "../hooks/useData";
+import { Transaction } from "../types";
 const TransactionList = () => {
   const { transactions, deleteTransaction } = useData();
   return (
     <div>
       <ul>
-        {transactions.map((transaction) => {
+        {transactions.map((transaction: Transaction) => {
           return (
             <li
               key={transaction.id}
