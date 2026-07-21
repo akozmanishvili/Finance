@@ -3,20 +3,20 @@ import useData from "../hooks/useData";
 import { Category } from "../types";
 const TransactionForm = () => {
   const [name, setName] = useState(``);
-  const [cost, setCost] = useState(``);
+  const [cost, setCost] = useState(0);
   const [category, setCategory] = useState(``);
-  const [type, setType] = useState(``);
+  const [type, setType] = useState<"Expense" | "Income" | "Empty">("Empty");
 
   const { categories, addTransaction } = useData();
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     const id = Date.now();
-    if (name !== "" && type !== "" && category !== "" && cost !== "")
+    if (name !== "" && type !== "Empty" && category !== "" && cost !== 0)
       addTransaction({ name, cost, category, type, id });
     setName(``);
-    setCost(``);
+    setCost(0);
     setCategory(``);
-    setType(``);
+    setType(`Empty`);
   };
 
   return (
@@ -31,7 +31,7 @@ const TransactionForm = () => {
         type="number"
         placeholder="Cost of the transaction"
         value={cost}
-        onChange={(e) => setCost(e.target.value)}
+        onChange={(e) => setCost(Number(e.target.value))}
       ></input>
       <div className="form-group">
         <label htmlFor="transaction-category">
@@ -58,7 +58,9 @@ const TransactionForm = () => {
         <select
           id="transaction-type"
           value={type}
-          onChange={(e) => setType(e.target.value)}
+          onChange={(e) =>
+            setType(e.target.value as "Expense" | "Income" | "Empty")
+          }
         >
           <option value="Empty">Choose Type</option>
           <option value="Expense">Expense</option>

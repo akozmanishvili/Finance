@@ -1,10 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { createContext } from "react";
-const AuthContextValue = createContext();
 
-const AuthContext = ({ children }) => {
-  const [loggedIn, setLoggedIn] = useState(
-    JSON.parse(localStorage.getItem(`loggedIn`)),
+type AuthContextType = {
+  loggedIn: boolean;
+  login: () => void;
+  logout: () => void;
+};
+
+const AuthContextValue = createContext<AuthContextType | undefined>(undefined);
+
+const AuthContext = ({ children }: { children: React.ReactNode }) => {
+  const [loggedIn, setLoggedIn] = useState<boolean>(
+    JSON.parse(localStorage.getItem(`loggedIn`) || "false"),
   );
 
   const login = () => {
