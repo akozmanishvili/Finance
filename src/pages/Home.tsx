@@ -2,11 +2,12 @@ import useData from "../hooks/useData";
 import { useState } from "react";
 import TransactionList from "../components/TransactionList";
 import TransactionForm from "../components/TransactionForm";
+import { type Transaction } from "../types";
 const Home = () => {
   const { transactions } = useData();
 
   const calculateSum = () => {
-    let total = transactions.reduce((sum, transaction) => {
+    let total = transactions.reduce((sum: number, transaction: Transaction) => {
       if (transaction.type === "Expense") {
         sum = sum - Number(transaction.cost);
       } else if (transaction.type === "Income") {
